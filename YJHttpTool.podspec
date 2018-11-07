@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
 s.name     = "YJHttpTool"
-s.version  = "1.0.0"
+s.version  = "1.1.0"
 s.license  = "MIT"
 s.summary  = "iOS分类"
 s.homepage = "https://github.com/Liuyujiaodev/YJHttpTool.git"
@@ -24,4 +24,5 @@ s.frameworks = 'Foundation', 'UIKit'
 s.requires_arc = true
 s.platform = :ios, '8.0'
 s.dependency "AFNetworking", "~> 3.0"
+s.dependency "Reachability"
 end
