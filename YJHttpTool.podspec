@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
 s.name     = "YJHttpTool"
-s.version  = "1.1.0"
+s.version  = "1.1.1"
 s.license  = "MIT"
 s.summary  = "iOS分类"
 s.homepage = "https://github.com/Liuyujiaodev/YJHttpTool.git"
@@ -19,7 +19,7 @@ s.source       = { :git => "https://github.com/Liuyujiaodev/YJHttpTool.git", :ta
 s.description = %{
 。
 }
-s.source_files = "YLHttpTool/*{h,m}"
+s.source_files = "YJHttpTool/**/*.{h,m}"
 s.frameworks = 'Foundation', 'UIKit'
 s.requires_arc = true
 s.platform = :ios, '8.0'
