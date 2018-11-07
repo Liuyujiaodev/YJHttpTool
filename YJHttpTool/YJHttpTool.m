@@ -6,16 +6,16 @@
 //  Copyright © 2017年 yj. All rights reserved.
 //
 
-#import "YLHttpRequest.h"
+#import "YJHttpTool.h"
 #import "Reachability.h"
 
-@interface YLHttpRequest ()
+@interface YJHttpTool ()
 @end
 
-@implementation YLHttpRequest
+@implementation YJHttpTool
 
 + (instancetype)sharedInstance {
-    static YLHttpRequest *_sharedInstance = nil;
+    static YJHttpTool *_sharedInstance = nil;
     static dispatch_once_t onceToken = 0;
     dispatch_once(&onceToken, ^{
         _sharedInstance = [[self alloc] init];
@@ -28,7 +28,7 @@
     _baseUrl = baseUrl;
 }
 
-- (YLHttpRequest *)init {
+- (YJHttpTool *)init {
     if (self = [super init]) {
 
         self.afnReqManager = [[AFHTTPSessionManager alloc] init];

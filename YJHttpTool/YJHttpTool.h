@@ -14,7 +14,7 @@ typedef void(^Success)(NSDictionary *dic);
 typedef void(^Failure)(NSError *error);
 typedef void(^RequestFailure)(NSDictionary *dic);
 
-@interface YLHttpRequest : NSObject
+@interface YJHttpTool : NSObject
 
 @property (nonatomic, strong) AFHTTPSessionManager *afnReqManager;
 @property (nonatomic, copy) NSString* baseUrl;

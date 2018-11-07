@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		092FC54A2192F29E00091D87 /* YLHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 092FC5492192F29D00091D87 /* YLHttpRequest.m */; };
+		092FC54A2192F29E00091D87 /* YJHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 092FC5492192F29D00091D87 /* YJHttpTool.m */; };
 		09AEA9FE21789A8E00F315B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09AEA9FD21789A8E00F315B9 /* AppDelegate.m */; };
 		09AEAA0121789A8E00F315B9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09AEAA0021789A8E00F315B9 /* ViewController.m */; };
 		09AEAA0421789A8E00F315B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09AEAA0221789A8E00F315B9 /* Main.storyboard */; };
@@ -18,8 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		092FC5482192F29D00091D87 /* YLHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLHttpRequest.h; sourceTree = "<group>"; };
-		092FC5492192F29D00091D87 /* YLHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLHttpRequest.m; sourceTree = "<group>"; };
+		092FC5482192F29D00091D87 /* YJHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJHttpTool.h; sourceTree = "<group>"; };
+		092FC5492192F29D00091D87 /* YJHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJHttpTool.m; sourceTree = "<group>"; };
 		09AEA9F921789A8E00F315B9 /* YJHttpToolExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YJHttpToolExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09AEA9FC21789A8E00F315B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		09AEA9FD21789A8E00F315B9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -50,8 +50,8 @@
 		092FC5472192F29D00091D87 /* YJHttpTool */ = {
 			isa = PBXGroup;
 			children = (
-				092FC5482192F29D00091D87 /* YLHttpRequest.h */,
-				092FC5492192F29D00091D87 /* YLHttpRequest.m */,
+				092FC5482192F29D00091D87 /* YJHttpTool.h */,
+				092FC5492192F29D00091D87 /* YJHttpTool.m */,
 			);
 			name = YJHttpTool;
 			path = ../YJHttpTool;
@@ -245,7 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				092FC54A2192F29E00091D87 /* YLHttpRequest.m in Sources */,
+				092FC54A2192F29E00091D87 /* YJHttpTool.m in Sources */,
 				09AEAA0121789A8E00F315B9 /* ViewController.m in Sources */,
 				09AEAA0C21789A8F00F315B9 /* main.m in Sources */,
 				09AEA9FE21789A8E00F315B9 /* AppDelegate.m in Sources */,
