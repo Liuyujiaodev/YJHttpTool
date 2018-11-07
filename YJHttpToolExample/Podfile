@@ -3,5 +3,5 @@ inhibit_all_warnings!
 
 target :YJHttpToolExample do
     pod 'AFNetworking', '~> 3.0'
-
+    pod 'Reachability'
 end

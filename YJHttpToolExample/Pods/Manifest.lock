@@ -14,13 +14,16 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - Reachability (3.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - Reachability
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
 
-PODFILE CHECKSUM: 1f65ddc92fcc42b705ee8a148cefbcd7797eb733
+PODFILE CHECKSUM: b0c929afb3f075203cf03d2f1d62c25fcff3bd75
 
 COCOAPODS: 1.4.0.rc.1

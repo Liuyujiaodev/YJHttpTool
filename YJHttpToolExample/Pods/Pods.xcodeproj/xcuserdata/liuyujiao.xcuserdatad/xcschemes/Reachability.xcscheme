@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "99B949D93E88F2F787A9387F3671179B"
-               BlueprintName = "Pods-YJHttpToolExample"
+               BlueprintIdentifier = "90FFA6C7B878E5265082FB1A3CAC71EB"
+               BlueprintName = "Reachability"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libPods-YJHttpToolExample.a">
+               BuildableName = "libReachability.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

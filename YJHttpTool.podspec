@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
 s.name     = "YJHttpTool"
-s.version  = "1.1.1"
+s.version  = "1.1.2"
 s.license  = "MIT"
 s.summary  = "iOS分类"
 s.homepage = "https://github.com/Liuyujiaodev/YJHttpTool.git"
