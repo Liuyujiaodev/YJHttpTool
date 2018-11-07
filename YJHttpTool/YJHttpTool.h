@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFHTTPSessionManager.h"
 
 
 typedef void(^Success)(NSDictionary *dic);
@@ -16,7 +15,6 @@ typedef void(^RequestFailure)(NSDictionary *dic);
 
 @interface YJHttpTool : NSObject
 
-@property (nonatomic, strong) AFHTTPSessionManager *afnReqManager;
 @property (nonatomic, copy) NSString* baseUrl;
 
 + (instancetype)sharedInstance;

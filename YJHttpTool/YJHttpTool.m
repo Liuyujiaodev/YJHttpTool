@@ -8,8 +8,11 @@
 
 #import "YJHttpTool.h"
 #import "Reachability.h"
+#import "AFHTTPSessionManager.h"
 
 @interface YJHttpTool ()
+@property (nonatomic, strong) AFHTTPSessionManager *afnReqManager;
+
 @end
 
 @implementation YJHttpTool

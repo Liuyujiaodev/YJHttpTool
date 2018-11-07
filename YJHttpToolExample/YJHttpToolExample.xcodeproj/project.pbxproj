@@ -391,6 +391,7 @@
 			baseConfigurationReference = 29D5652A7D7486BBC335F4D0 /* Pods-YJHttpToolExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 447C6XLHSL;
 				INFOPLIST_FILE = YJHttpToolExample/Info.plist;
@@ -409,6 +410,7 @@
 			baseConfigurationReference = 3188C1A0B0F6E697D5638F53 /* Pods-YJHttpToolExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 447C6XLHSL;
 				INFOPLIST_FILE = YJHttpToolExample/Info.plist;
