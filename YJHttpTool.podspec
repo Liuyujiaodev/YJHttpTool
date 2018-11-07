@@ -8,19 +8,20 @@
 
 Pod::Spec.new do |s|
 
-s.name     = "YJCategory"
+s.name     = "YJHttpTool"
 s.version  = "1.0.0"
 s.license  = "MIT"
 s.summary  = "iOS分类"
-s.homepage = "https://github.com/Liuyujiaodev/YJCategory.git"
+s.homepage = "https://github.com/Liuyujiaodev/YJHttpTool.git"
 s.author   = "liuyujiao"
 #s.social_media_url = "https://www.jianshu.com/u/16227d25bcf4"
-s.source       = { :git => "https://github.com/Liuyujiaodev/YJCategory.git", :tag => "#{s.version}" }
+s.source       = { :git => "https://github.com/Liuyujiaodev/YJHttpTool.git", :tag => "#{s.version}" }
 s.description = %{
 。
 }
-s.source_files = "CommonCategory","CommonCategory/**/*.{h,m}"
+s.source_files = "YLHttpTool/*{h,m}"
 s.frameworks = 'Foundation', 'UIKit'
 s.requires_arc = true
 s.platform = :ios, '8.0'
+s.dependency "AFNetworking", "~> 3.0"
 end

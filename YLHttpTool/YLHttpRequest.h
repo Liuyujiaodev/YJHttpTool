@@ -17,7 +17,7 @@ typedef void(^RequestFailure)(NSDictionary *dic);
 @interface YLHttpRequest : NSObject
 
 @property (nonatomic, strong) AFHTTPSessionManager *afnReqManager;
-@property (nonatomic, copy) NSString* url;
+@property (nonatomic, copy) NSString* baseUrl;
 
 + (instancetype)sharedInstance;
 
@@ -27,12 +27,13 @@ typedef void(^RequestFailure)(NSDictionary *dic);
      requestFailure:(RequestFailure)requestFailure
             failure:(Failure)failure;
 
-- (void)sendRequestBaseUrl:(NSString*)baseUrl
-                   apiName:(NSString*)apiName
-                    params:(NSDictionary*)params
-                   success:(Success)success
-            requestFailure:(RequestFailure)requestFailure
-                   failure:(Failure)failure;
+
+- (void)sendRequestBaseURL:(NSString*)baseUrl
+            apiName:(NSString*)apiName
+             params:(NSDictionary*)params
+            success:(Success)success
+     requestFailure:(RequestFailure)requestFailure
+            failure:(Failure)failure;
 
 -(BOOL) hasWifi;
 -(BOOL) hasNetwork;

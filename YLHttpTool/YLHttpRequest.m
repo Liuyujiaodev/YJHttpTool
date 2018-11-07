@@ -7,15 +7,9 @@
 //
 
 #import "YLHttpRequest.h"
-#import "YLASEUtil.h"
-#import "YLRSAUtil.h"
-#define LOGINENCODE    @"RSA"
-
-//#define kENCODE    @"RSA"
-#define kENCODE    @"AES"
+#import "Reachability.h"
 
 @interface YLHttpRequest ()
-@property (nonatomic, copy) NSString* baseUrl;
 @end
 
 @implementation YLHttpRequest
@@ -30,10 +24,14 @@
     return _sharedInstance;
 }
 
+- (void)setBaseUrl:(NSString *)baseUrl {
+    _baseUrl = baseUrl;
+}
+
 - (YLHttpRequest *)init {
     if (self = [super init]) {
 
-        self.afnReqManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:YL_BASE_API]];
+        self.afnReqManager = [[AFHTTPSessionManager alloc] init];
         self.afnReqManager.requestSerializer.timeoutInterval = 10.f;
         
         AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
@@ -53,141 +51,51 @@
     return self;
 }
 
-- (void)sendRequestBaseUrl:(NSString*)baseUrl
-        apiName:(NSString*)apiName
+- (void)sendRequest:(NSString*)apiName
              params:(NSDictionary*)params
             success:(Success)success
      requestFailure:(RequestFailure)requestFailure
             failure:(Failure)failure {
-    self.afnReqManager.baseURL = [NSURL URLWithString:baseUrl];
-    if (apiName == nil || apiName.length == 0) {
-        //        NSLog(@"ERROR:MsClient.sendRequest:apiName Empty");
-        return;
-    }
-    NSDictionary* rsaDicParams;
-    if ([LOGINENCODE isEqualToString:@"RSA"]) {
-        rsaDicParams = [YLRSAUtil encodeDic:[self addFixedArgumentsWithDictionary:params]];
-    } else if ([LOGINENCODE isEqualToString:@"AES"]) {
-        rsaDicParams = [YLASEUtil encodeDic:[self addFixedArgumentsWithDictionary:params]];
-    }
-    
-    [self.afnReqManager POST:apiName parameters:rsaDicParams progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        
-        NSDictionary* dic = [NSDictionary dictionary];
-        if (responseObject != nil) {
-            dic = (NSDictionary *)responseObject;
-        }
-        NSString *status = [dic stringWithKey:@"status"];
-        if ([status isEqualToString:@"0"]) {
-            DLog(@"-baseAPI-%@---%@----%@",baseUrl,params, apiName, dic);
-            requestFailure(dic);
-        } else {
-            NSDictionary* decodeDic;
-            if (![[dic stringWithKey:@"data"] isEqualToString:@""]) {
-                if ([LOGINENCODE isEqualToString:@"RSA"]) {
-                    decodeDic = [YLRSAUtil decodeWithStr:[dic objectForKey:@"data"]];
-                } else if ([LOGINENCODE isEqualToString:@"AES"]) {
-                    decodeDic = [YLASEUtil decodeWithStr:[dic objectForKey:@"data"]];
-                }
-            }
-            DLog(@"--%@---%@----%@",params, apiName, decodeDic);
-            success(decodeDic);
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        failure(error);
-    }];
+    [self sendRequest:_baseUrl params:params success:success requestFailure:requestFailure failure:failure];
 }
 
-- (void)sendRequest:(NSString*)apiName
+
+- (void)sendRequestBaseURL:(NSString*)baseUrl
+             apiName:(NSString*)apiName
              params:(NSDictionary*)params
              success:(Success)success
              requestFailure:(RequestFailure)requestFailure
              failure:(Failure)failure {
-    self.afnReqManager.baseURL = [NSURL URLWithString:YL_BASE_API];
-
     if (apiName == nil || apiName.length == 0) {
-        //        NSLog(@"ERROR:MsClient.sendRequest:apiName Empty");
         return;
     }
-    NSDictionary* rsaDicParams;
-    if ([kENCODE isEqualToString:@"RSA"]) {
-        rsaDicParams = [YLRSAUtil encodeDic:[self addFixedArgumentsWithDictionary:params]];
-    } else if ([kENCODE isEqualToString:@"AES"]) {
-        rsaDicParams = [YLASEUtil encodeDic:[self addFixedArgumentsWithDictionary:params]];
-    }    DLog(@"-baseAPI -%@---%@",YL_BASE_API,[self addFixedArgumentsWithDictionary:params]);
 
-    [self.afnReqManager POST:apiName parameters:rsaDicParams progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [self.afnReqManager POST:[baseUrl stringByAppendingString:apiName] parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         
         NSDictionary* dic = [NSDictionary dictionary];
         if (responseObject != nil) {
             dic = (NSDictionary *)responseObject;
         }
-        NSString *status = [dic stringWithKey:@"status"];
-        if ([status isEqualToString:@"0"]) {
-            DLog(@"--%@---%@----%@",params, apiName, dic);
-            requestFailure(dic);
-        } else {
-            NSDictionary* decodeDic;
-            if (![[dic stringWithKey:@"data"] isEqualToString:@""]) {
-                if ([kENCODE isEqualToString:@"RSA"]) {
-                    decodeDic = [YLRSAUtil decodeWithStr:[dic objectForKey:@"data"]];
-                } else if ([kENCODE isEqualToString:@"AES"]) {
-                    decodeDic = [YLASEUtil decodeWithStr:[dic objectForKey:@"data"]];
-                }
-            }
-            DLog(@"--%@---%@----%@",params, apiName, decodeDic);
-            success(decodeDic);
-        }
-
+        success(dic);
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         failure(error);
+        
     }];
 }
 
 -(BOOL) hasWifi {
-    YLReachability* reach = [YLReachability reachabilityWithHostName:@"www.baidu.com"];
+    Reachability* reach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
     NetworkStatus status = [reach currentReachabilityStatus];
     return status == ReachableViaWiFi;
 }
 
 -(BOOL) hasNetwork {
-    YLReachability* reach = [YLReachability reachabilityWithHostName:@"www.baidu.com"];
+    Reachability* reach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
     NetworkStatus status = [reach currentReachabilityStatus];
     return status != NotReachable;
-}
-
-
-- (NSDictionary *)addFixedArgumentsWithDictionary:(NSDictionary *)parameters
-{
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:parameters];
-    if ([YLCompanySettingUtil getCompanyCid]) {
-        [dic setObject:[YLCompanySettingUtil getCompanyCid] forKey:@"cid"];
-        [dic setObject:[NSNumber numberWithBool:YES] forKey:@"customization"];
-    } else {
-        [dic setObject:[NSNumber numberWithBool:NO] forKey:@"customization"];
-    }
-    [dic setObject:YMBCURRENT_DEVICE_ID forKey:@"device_id"];
-    [dic setObject:[NSNumber numberWithInt:1] forKey:@"os_type"];
-    [dic setObject:[NSNumber numberWithFloat:CURRENT_SYSTEM_VERSION] forKey:@"os_version"];
-    [dic setObject:[Util getDeviceType] forKey:@"device_type"];
-    [dic setObject:APP_VERSION forKey:@"version"];
-
-//    if ([kENCODE isEqualToString:@"RSA"]) {
-//        [dic setObject:@"1" forKey:@"isTest"];
-//    } else if ([kENCODE isEqualToString:@"AES"]) {
-//        [dic setObject:@"1" forKey:@"isAes"];
-//    }
-
-    return dic;
 }
 
 - (AFSecurityPolicy *)customSecurityPolicy {
